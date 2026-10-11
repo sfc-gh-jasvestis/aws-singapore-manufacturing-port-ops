@@ -1,0 +1,142 @@
+{
+  "title": "Singapore Manufacturing Port Operations Control Tower",
+  "duration": "6 minutes",
+  "thesis": "Snowflake turns daily berth data from Meranti Quay Terminals, a fictional Singapore container terminal operator serving the export network of the fictional manufacturer Halcyon Components (mainline, feeder, transshipment, barge and reefer berths across six Singapore port districts), into on-time box-move KPIs, 7-day berth disruption-risk scores, vessel waiting-time anomalies and grounded AI answers, all on curated dynamic tables.",
+  "tabs": [
+    {
+      "id": "executive-cockpit",
+      "persona": {
+        "name": "Farah Iskandar",
+        "role": "Head of Port Operations, Singapore (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "On-time box moves, berth disruptions, rehandle moves and box moves handled for 30 berths across Tuas, Pasir Panjang, Tanjong Pagar, Pioneer, Sembawang and Changi.",
+        "Every KPI is a numerator over a denominator in a curated dynamic table, so it can be traced back to berth-day rows and the vessel calls behind them.",
+        "The late-box-moves chart shows which disruption causes push the most moves outside the agreed berth window."
+      ],
+      "show": [
+        "KPI cards",
+        "Daily on-time box moves",
+        "Late box moves by disruption cause",
+        "Berth table"
+      ],
+      "call_out": "One governed set of berth KPIs, traceable to source rows",
+      "transition": {
+        "next_tab": "predictive",
+        "line": "Which berths are likely to cause the next disruption?"
+      }
+    },
+    {
+      "id": "predictive",
+      "persona": {
+        "name": "Marcus Seah",
+        "role": "Berth Planning Lead (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Snowflake ML classification scores each berth's probability of a disruption in the next 7 days.",
+        "The holdout line shows precision and recall on the most recent labelled days, against the base rate.",
+        "Anomaly detection flags vessel waiting-time outliers per berth, and the forecast projects port-network box moves for 14 days."
+      ],
+      "show": [
+        "Holdout metrics",
+        "Risk by berth",
+        "Box-move forecast",
+        "Vessel waiting-time anomalies"
+      ],
+      "call_out": "Honest, evaluated ML inside the data platform",
+      "transition": {
+        "next_tab": "planning",
+        "line": "How healthy are the cranes behind those risks?"
+      }
+    },
+    {
+      "id": "planning",
+      "persona": {
+        "name": "Marcus Seah",
+        "role": "Berth Planning Lead (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Crane uptime and crane readiness (ship-to-shore, tandem-lift, mobile harbour and barge cranes, and reefer monitoring racks) frame the response capacity.",
+        "Crane PM compliance against on-time box moves by berth shows where maintenance discipline and berth-window performance move together; it is an association, not proof of cause.",
+        "The action memo drafts three prioritised actions from the KPI, disruption, cause and risk tables only."
+      ],
+      "show": [
+        "Crane uptime and readiness",
+        "PM compliance vs on-time box moves",
+        "Action memo"
+      ],
+      "call_out": "Grounded draft actions, with a human in the loop",
+      "transition": {
+        "next_tab": "live",
+        "line": "What happens when a berth raises a vessel-waiting alarm right now?"
+      }
+    },
+    {
+      "id": "live",
+      "persona": {
+        "name": "Marcus Seah",
+        "role": "Berth Planning Lead (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Live quay sensor readings (vessel waiting hours, berth occupancy) land in RAW.LIVE_TELEMETRY, from the simulator or from AWS IoT Core through Snowpipe.",
+        "The Snowflake alert logs ALARM readings with an SOP hint and the berth's current risk band, then emails the Meranti Quay berth duty manager."
+      ],
+      "show": [
+        "Messages loaded and lag",
+        "Latest readings",
+        "Alert log"
+      ],
+      "call_out": "From alarm to action in one platform",
+      "transition": {
+        "next_tab": "ask-ai",
+        "line": "Now ask the data directly."
+      }
+    },
+    {
+      "id": "ask-ai",
+      "persona": {
+        "name": "Farah Iskandar",
+        "role": "Head of Port Operations, Singapore (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "The Cortex Agent uses Cortex Analyst over the semantic view for metrics, and Cortex Search over synthetic berth SOPs.",
+        "Each answer shows the generated SQL and the SOPs it cited."
+      ],
+      "show": [
+        "Ask a sample question",
+        "Generated SQL",
+        "SOP citations"
+      ],
+      "call_out": "Natural-language answers you can audit",
+      "transition": {
+        "next_tab": "architecture",
+        "line": "Here is how it is built."
+      }
+    },
+    {
+      "id": "architecture",
+      "persona": {
+        "name": "Farah Iskandar",
+        "role": "Head of Port Operations, Singapore (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Two builds share one core: Snowflake only, or AWS + Snowflake (IoT Core, Bedrock, QuickSight and Amazon Q).",
+        "Everything shown is synthetic demo data, rebuilt reproducibly from the repo."
+      ],
+      "show": [
+        "Both architecture diagrams"
+      ],
+      "call_out": "One governed core, with an optional AWS edge",
+      "transition": {
+        "next_tab": "",
+        "line": "Questions?"
+      }
+    }
+  ]
+}
